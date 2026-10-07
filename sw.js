@@ -1,5 +1,5 @@
 /* Service worker: deixa o app funcionar sem internet (offline-first). */
-const CACHE = "atividades-v1";
+const CACHE = "atividades-v2";
 const ASSETS = [
   "./",
   "./index.html",
