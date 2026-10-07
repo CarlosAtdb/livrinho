@@ -1,6 +1,6 @@
-# Atividades — app de jogos para 4 a 5 anos
+# Atividades — app de jogos para 2 a 6 anos
 
-App web com 5 jogos (ligar os pontos, sudoku de frutas, qual vem depois?, contar e primeiras letras). Tudo em português, sem anúncios, sem coleta de dados, funciona offline depois de aberto uma vez.
+App web com 8 jogos (ligar os pontos, sudoku de frutas, qual vem depois?, contar, primeiras letras, jogo da memória, de quem é a sombra? e qual é o diferente?). Na tela inicial escolhe-se a idade da criança (2 a 6 anos) e a dificuldade de todos os jogos se ajusta. Tudo em português, sem anúncios, sem coleta de dados, funciona offline depois de aberto uma vez.
 
 ## O jeito mais simples (iPhone / iPad)
 
@@ -33,4 +33,4 @@ O resto do passo a passo (Pages) é igual. No Android/Chrome aparece a opção *
 
 - Precisa estar em **HTTPS** para instalar como app — o GitHub Pages já serve em HTTPS, então está coberto.
 - Se você atualizar os arquivos, troque a linha `const CACHE = "atividades-v1"` no `sw.js` para `"atividades-v2"` (e assim por diante) para forçar a atualização nos aparelhos que já instalaram.
-- O progresso (jogos concluídos, som ligado/desligado) fica salvo só no próprio aparelho.
+- A idade escolhida e o som ligado/desligado ficam salvos só no próprio aparelho.
