@@ -1,7 +1,7 @@
 {
   "name": "Atividades",
   "short_name": "Atividades",
-  "description": "Jogos para crianças de 2 a 6 anos: ligar os pontos, sudoku de frutas, padrões, contar, primeiras letras, memória, sombras e qual é o diferente.",
+  "description": "14 jogos para crianças de 2 a 6 anos: ligar os pontos, sudoku, padrões, contar, letras, memória, sombras, diferente, labirinto, quebra-cabeça, comparar quantidades, cores, ordem de tamanho e formas.",
   "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",

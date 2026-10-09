@@ -1,6 +1,6 @@
 # Atividades — app de jogos para 2 a 6 anos
 
-App web com 8 jogos (ligar os pontos, sudoku de frutas, qual vem depois?, contar, primeiras letras, jogo da memória, de quem é a sombra? e qual é o diferente?). Na tela inicial escolhe-se a idade da criança (2 a 6 anos) e a dificuldade de todos os jogos se ajusta. Tudo em português, sem anúncios, sem coleta de dados, funciona offline depois de aberto uma vez.
+App web com 14 jogos (ligar os pontos, sudoku de frutas, qual vem depois?, contar, primeiras letras, jogo da memória, de quem é a sombra?, qual é o diferente?, labirinto, quebra-cabeça, onde tem mais?, cores, do menor ao maior e formas). Na tela inicial escolhe-se a idade da criança (2 a 6 anos) e a dificuldade de todos os jogos se ajusta. Tudo em português, sem anúncios, sem coleta de dados, funciona offline depois de aberto uma vez.
 
 ## O jeito mais simples (iPhone / iPad)
 
