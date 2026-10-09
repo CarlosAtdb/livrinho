@@ -36,7 +36,7 @@
 
   /* ---------- HOME ---------- */
   #home{overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .home-inner{max-width:560px;width:100%;margin:0 auto;padding:30px 22px 40px;text-align:center}
+  .home-inner{max-width:720px;width:100%;margin:0 auto;padding:30px 22px 40px;text-align:center}
   .brand-emoji{font-size:clamp(40px,11vw,56px);line-height:1;letter-spacing:.05em}
   h1{font-weight:700;font-size:clamp(34px,10vw,50px);color:var(--green);margin:.14em 0 .05em}
   .tagline{font-size:clamp(15px,4.4vw,19px);color:var(--muted);font-weight:500;margin:0 0 18px}
@@ -48,18 +48,17 @@
     font-family:inherit;font-weight:600;font-size:16px;color:var(--ink);transition:transform .08s ease}
   .chip:active{transform:scale(.94)}
   .chip.sel{background:var(--green-bright);border-color:var(--green-bright);color:#fff}
-  .tiles{display:flex;flex-direction:column;gap:12px}
-  .tile{display:flex;align-items:center;gap:16px;text-align:left;border:2px solid var(--line);
-    background:#fff;border-radius:22px;padding:16px 18px;cursor:pointer;font-family:inherit;
-    box-shadow:var(--shadow);transition:transform .08s ease,border-color .15s}
-  .tile:active{transform:scale(.98)}
-  .tile .t-emoji{font-size:38px;line-height:1;flex:0 0 auto;width:56px;text-align:center}
-  .tile .t-txt{flex:1 1 auto}
-  .tile .t-name{display:block;font-weight:600;font-size:19px;color:var(--ink)}
-  .tile .t-sub{display:block;font-size:14px;color:var(--muted);font-weight:500;margin-top:3px;line-height:1.3}
-  .tile .t-new{display:inline-block;font-size:11px;font-weight:600;color:#fff;background:var(--coral);
-    border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle}
-  .tile .t-arrow{font-size:22px;color:var(--green-bright);font-weight:700}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (min-width:640px){ .tiles{grid-template-columns:1fr 1fr 1fr} }
+  .tile{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
+    border:2px solid var(--line);background:#fff;border-radius:22px;padding:16px 10px 14px;cursor:pointer;
+    font-family:inherit;box-shadow:var(--shadow);transition:transform .08s ease,border-color .15s}
+  .tile:active{transform:scale(.97)}
+  .tile .t-emoji{font-size:40px;line-height:1}
+  .tile .t-name{display:block;font-weight:600;font-size:16px;color:var(--ink);line-height:1.2}
+  .tile .t-sub{display:block;font-size:12.5px;color:var(--muted);font-weight:500;line-height:1.3}
+  .tile .t-new{position:absolute;top:8px;right:8px;font-size:11px;font-weight:600;color:#fff;
+    background:var(--coral);border-radius:999px;padding:1px 7px}
   .tip{margin-top:28px;font-size:13.5px;color:var(--muted);font-weight:400;line-height:1.5}
   .tip b{color:var(--ink);font-weight:600}
 
@@ -146,6 +145,43 @@
   .mcard.match{background:var(--green-soft)}
   @keyframes flip{from{transform:scaleX(.1)}to{transform:scaleX(1)}}
 
+  /* ---------- PERGUNTA FALADA ---------- */
+  .pergunta{border:none;background:#fff;box-shadow:var(--shadow);border-radius:18px;padding:12px 20px;
+    font-family:inherit;font-weight:600;font-size:clamp(18px,5.4vw,22px);color:var(--ink);cursor:pointer}
+  .pergunta::after{content:" 🔈";font-size:.8em}
+  .ctrl.hint{background:var(--cheese);color:#6b4a00}
+
+  /* ---------- LABIRINTO ---------- */
+  .lab-wrap{background:#fff;border-radius:20px;box-shadow:var(--shadow);padding:12px;touch-action:none}
+  #labCv{display:block;border-radius:8px;touch-action:none}
+
+  /* ---------- QUEBRA-CABEÇA ---------- */
+  .puz-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .puz-modelo{width:84px;height:84px;border-radius:14px;box-shadow:var(--shadow)}
+  .puz{display:grid;gap:3px;background:var(--line);padding:3px;border-radius:14px;box-shadow:var(--shadow);transition:gap .3s}
+  .puz.feito{gap:0}
+  .peca{border:none;padding:0;cursor:pointer;border-radius:6px;background-repeat:no-repeat;
+    outline:4px solid transparent;outline-offset:-4px;transition:transform .1s ease}
+  .peca.sel{outline-color:var(--cheese);transform:scale(.93)}
+
+  /* ---------- ONDE TEM MAIS / CORES / ORDEM / FORMAS ---------- */
+  .opt.cartao{width:min(42vw,190px);height:auto;min-height:140px;flex-wrap:wrap;align-content:center;
+    gap:4px;padding:10px;font-size:28px;line-height:1}
+  .opt.cartao .gr{font-size:40px} .opt.cartao .pq{font-size:19px}
+  .opt.cor{width:76px;height:76px;border-radius:50%;border:3px solid rgba(0,0,0,.1)}
+  .opt.cor.right{border-color:var(--green-bright);box-shadow:0 0 0 5px var(--green-soft),var(--shadow)}
+  .cor-fig{display:flex;align-items:center;gap:12px;font-size:clamp(70px,22vw,100px);line-height:1}
+  .cor-fig .bola{width:64px;height:64px;border-radius:50%;box-shadow:var(--shadow);border:3px solid rgba(0,0,0,.1)}
+  .cor-fig .op{font-size:34px;font-weight:700;color:var(--green)}
+  .opt.forma{width:88px;height:88px;padding:10px}
+  .opt.forma svg{width:100%;height:100%;display:block}
+  .opt.serie{width:92px;height:92px;line-height:1}
+  .opt.usado{visibility:hidden}
+  .fila{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .fila .slot{width:72px;height:72px;border-radius:16px;border:3px dashed var(--line);background:#fff;
+    display:flex;align-items:center;justify-content:center;line-height:1}
+  .fila .slot.cheio{border-style:solid;border-color:var(--green-bright);background:var(--green-soft)}
+
   /* ---------- VITÓRIA ---------- */
   #win{position:fixed;inset:0;display:none;align-items:center;justify-content:center;
     background:rgba(32,48,42,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:20}
@@ -175,52 +211,26 @@
   <div class="home-inner">
     <div class="brand-emoji">✏️ 🍓 🔵</div>
     <h1>Atividades</h1>
-    <p class="tagline">Brincadeiras para crianças de 2 a 6 anos</p>
+    <p class="tagline">14 brincadeiras para crianças de 2 a 6 anos</p>
     <div class="idade">
       <div class="lbl">Idade da criança</div>
       <div class="chips" id="chips"></div>
     </div>
     <div class="tiles">
-      <button class="tile" data-act="dots">
-        <span class="t-emoji">✏️</span>
-        <span class="t-txt"><span class="t-name">Ligar os pontos</span><span class="t-sub">Toque os números de 1 até o fim</span></span>
-        <span class="t-arrow">→</span>
-      </button>
-      <button class="tile" data-act="sudoku">
-        <span class="t-emoji">🍓</span>
-        <span class="t-txt"><span class="t-name">Sudoku de frutas</span><span class="t-sub">Uma de cada fruta em cada linha</span></span>
-        <span class="t-arrow">→</span>
-      </button>
-      <button class="tile" data-act="padroes">
-        <span class="t-emoji">🔵</span>
-        <span class="t-txt"><span class="t-name">Qual vem depois?</span><span class="t-sub">Complete a sequência</span></span>
-        <span class="t-arrow">→</span>
-      </button>
-      <button class="tile" data-act="contar">
-        <span class="t-emoji">🔢</span>
-        <span class="t-txt"><span class="t-name">Contar</span><span class="t-sub">Quantos tem? Toque no número</span></span>
-        <span class="t-arrow">→</span>
-      </button>
-      <button class="tile" data-act="letras">
-        <span class="t-emoji">🔤</span>
-        <span class="t-txt"><span class="t-name">Primeiras letras</span><span class="t-sub">Com que letra começa?</span></span>
-        <span class="t-arrow">→</span>
-      </button>
-      <button class="tile" data-act="memoria">
-        <span class="t-emoji">🃏</span>
-        <span class="t-txt"><span class="t-name">Jogo da memória<span class="t-new">novo</span></span><span class="t-sub">Encontre os pares iguais</span></span>
-        <span class="t-arrow">→</span>
-      </button>
-      <button class="tile" data-act="sombras">
-        <span class="t-emoji">🌑</span>
-        <span class="t-txt"><span class="t-name">De quem é a sombra?<span class="t-new">novo</span></span><span class="t-sub">Ache a figura da sombra</span></span>
-        <span class="t-arrow">→</span>
-      </button>
-      <button class="tile" data-act="diferente">
-        <span class="t-emoji">🔍</span>
-        <span class="t-txt"><span class="t-name">Qual é o diferente?<span class="t-new">novo</span></span><span class="t-sub">Encontre o que não combina</span></span>
-        <span class="t-arrow">→</span>
-      </button>
+      <button class="tile" data-act="dots"><span class="t-emoji">✏️</span><span class="t-name">Ligar os pontos</span><span class="t-sub">Siga os números</span></button>
+      <button class="tile" data-act="sudoku"><span class="t-emoji">🍓</span><span class="t-name">Sudoku de frutas</span><span class="t-sub">Uma de cada em cada linha</span></button>
+      <button class="tile" data-act="padroes"><span class="t-emoji">🔵</span><span class="t-name">Qual vem depois?</span><span class="t-sub">Complete a sequência</span></button>
+      <button class="tile" data-act="contar"><span class="t-emoji">🔢</span><span class="t-name">Contar</span><span class="t-sub">Quantos tem?</span></button>
+      <button class="tile" data-act="letras"><span class="t-emoji">🔤</span><span class="t-name">Primeiras letras</span><span class="t-sub">Com que letra começa?</span></button>
+      <button class="tile" data-act="memoria"><span class="t-emoji">🃏</span><span class="t-name">Jogo da memória</span><span class="t-sub">Ache os pares iguais</span></button>
+      <button class="tile" data-act="sombras"><span class="t-emoji">🌑</span><span class="t-name">De quem é a sombra?</span><span class="t-sub">Ache a figura da sombra</span></button>
+      <button class="tile" data-act="diferente"><span class="t-emoji">🔍</span><span class="t-name">Qual é o diferente?</span><span class="t-sub">O que não combina?</span></button>
+      <button class="tile" data-act="labirinto"><span class="t-new">novo</span><span class="t-emoji">🐭</span><span class="t-name">Labirinto</span><span class="t-sub">Leve o ratinho ao queijo</span></button>
+      <button class="tile" data-act="quebra"><span class="t-new">novo</span><span class="t-emoji">🧩</span><span class="t-name">Quebra-cabeça</span><span class="t-sub">Monte a figura</span></button>
+      <button class="tile" data-act="mais"><span class="t-new">novo</span><span class="t-emoji">⚖️</span><span class="t-name">Onde tem mais?</span><span class="t-sub">Compare os grupos</span></button>
+      <button class="tile" data-act="cores"><span class="t-new">novo</span><span class="t-emoji">🎨</span><span class="t-name">Cores</span><span class="t-sub">Conheça e misture as cores</span></button>
+      <button class="tile" data-act="serie"><span class="t-new">novo</span><span class="t-emoji">📏</span><span class="t-name">Do menor ao maior</span><span class="t-sub">Coloque em ordem</span></button>
+      <button class="tile" data-act="formas"><span class="t-new">novo</span><span class="t-emoji">🔷</span><span class="t-name">Formas</span><span class="t-sub">Círculo, quadrado e mais</span></button>
     </div>
     <p class="tip">Dica: toque em <b>Compartilhar</b> › <b>Adicionar à Tela de Início</b> para abrir como um app.</p>
   </div>
@@ -346,6 +356,78 @@
   <div class="controls"><button class="ctrl" id="difSkip">⟳ Outra</button></div>
 </section>
 
+<!-- ============ LABIRINTO ============ -->
+<section id="labirinto" class="screen">
+  <div class="topbar">
+    <button class="icon-btn botHome">‹ Início</button>
+    <div class="level-info"><div class="n">Labirinto</div><div class="sub" id="labSub"></div></div>
+    <button class="icon-btn botSom">🔊</button>
+  </div>
+  <div class="play-area"><div class="lab-wrap"><canvas id="labCv"></canvas></div></div>
+  <div class="instru">Arraste o dedo do 🐭 até o 🧀</div>
+  <div class="controls"><button class="ctrl" id="labReset">↺ Recomeçar</button><button class="ctrl hint" id="labHint">💡 Dica</button><button class="ctrl" id="labNovo">🔀 Outro</button></div>
+</section>
+
+<!-- ============ QUEBRA-CABEÇA ============ -->
+<section id="quebra" class="screen">
+  <div class="topbar">
+    <button class="icon-btn botHome">‹ Início</button>
+    <div class="level-info"><div class="n">Quebra-cabeça</div><div class="sub" id="puzSub"></div></div>
+    <button class="icon-btn botSom">🔊</button>
+  </div>
+  <div class="play-area"><div class="puz-wrap"><img id="puzModelo" class="puz-modelo" alt="Modelo da figura"><div class="puz" id="puzBoard"></div></div></div>
+  <div class="instru">Toque em duas peças para trocar de lugar</div>
+  <div class="controls"><button class="ctrl" id="puzSkip">⟳ Outro</button></div>
+</section>
+
+<!-- ============ ONDE TEM MAIS ============ -->
+<section id="mais" class="screen">
+  <div class="topbar">
+    <button class="icon-btn botHome">‹ Início</button>
+    <div class="level-info"><div class="n">Onde tem mais?</div><div class="sub" id="maisSub"></div></div>
+    <button class="icon-btn botSom">🔊</button>
+  </div>
+  <div class="play-area"><div class="stim-wrap"><button class="pergunta" id="maisPerg"></button><div class="opts" id="maisOpts"></div></div></div>
+  <div class="instru">Toque no grupo certo</div>
+  <div class="controls"><button class="ctrl" id="maisSkip">⟳ Outra</button></div>
+</section>
+
+<!-- ============ CORES ============ -->
+<section id="cores" class="screen">
+  <div class="topbar">
+    <button class="icon-btn botHome">‹ Início</button>
+    <div class="level-info"><div class="n">Cores</div><div class="sub" id="corSub"></div></div>
+    <button class="icon-btn botSom">🔊</button>
+  </div>
+  <div class="play-area"><div class="stim-wrap"><div class="cor-fig" id="corFig"></div><button class="pergunta" id="corPerg"></button><div class="opts" id="corOpts"></div></div></div>
+  <div class="instru">Toque na cor certa</div>
+  <div class="controls"><button class="ctrl" id="corSkip">⟳ Outra</button></div>
+</section>
+
+<!-- ============ DO MENOR AO MAIOR ============ -->
+<section id="serie" class="screen">
+  <div class="topbar">
+    <button class="icon-btn botHome">‹ Início</button>
+    <div class="level-info"><div class="n">Do menor ao maior</div><div class="sub" id="serSub"></div></div>
+    <button class="icon-btn botSom">🔊</button>
+  </div>
+  <div class="play-area"><div class="stim-wrap"><button class="pergunta" id="serPerg"></button><div class="opts" id="serItens"></div><div class="fila" id="serFila"></div></div></div>
+  <div class="instru">Toque nas figuras na ordem certa</div>
+  <div class="controls"><button class="ctrl" id="serSkip">⟳ Outra</button></div>
+</section>
+
+<!-- ============ FORMAS ============ -->
+<section id="formas" class="screen">
+  <div class="topbar">
+    <button class="icon-btn botHome">‹ Início</button>
+    <div class="level-info"><div class="n">Formas</div><div class="sub" id="forSub"></div></div>
+    <button class="icon-btn botSom">🔊</button>
+  </div>
+  <div class="play-area"><div class="stim-wrap"><button class="pergunta" id="forPerg"></button><div class="opts" id="forOpts"></div></div></div>
+  <div class="instru">Toque na forma certa</div>
+  <div class="controls"><button class="ctrl" id="forSkip">⟳ Outra</button></div>
+</section>
+
 <!-- ============ VITÓRIA ============ -->
 <div id="win">
   <div class="win-card">
@@ -440,10 +522,12 @@ function soltarConfete(){
 }
 
 /* helper de opções: ehCerto(valor, índice) */
-function renderOpcoes(container, opcoes, ehCerto, onCerto, cls){
+// montar(botão, valor, índice): preenche o conteúdo do botão (padrão: o próprio valor como texto)
+function renderOpcoes(container, opcoes, ehCerto, onCerto, cls, montar){
   container.innerHTML="";
   opcoes.forEach((v,i)=>{
-    const b=document.createElement("button"); b.className="opt "+(cls||"txt"); b.textContent=v;
+    const b=document.createElement("button"); b.className="opt "+(cls||"txt");
+    if(montar) montar(b,v,i); else b.textContent=v;
     b.addEventListener("click",()=>{
       ac();
       if(ehCerto(v,i)){ b.classList.add("right"); somOk();
@@ -942,6 +1026,425 @@ function carregarDiferente(){
   mostrarTela("diferente");
 }
 
+/* ===================== 9) LABIRINTO ===================== */
+// tamanho (células por lado) de cada labirinto, por idade
+const LAB_CFG={2:[3,4,4],3:[4,5,5],4:[6,6,7],5:[8,9,10],6:[11,12,14]};
+const LN=1,LS=2,LE=4,LW=8, LDIRS=[LN,LS,LE,LW];
+const LDX={[LE]:1,[LW]:-1,[LN]:0,[LS]:0}, LDY={[LN]:-1,[LS]:1,[LE]:0,[LW]:0};
+const LOPP={[LN]:LS,[LS]:LN,[LE]:LW,[LW]:LE};
+const EMOJI_FONT="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif";
+function labGerar(n){
+  const g=Array.from({length:n},()=>new Array(n).fill(0));
+  const vis=Array.from({length:n},()=>new Array(n).fill(false));
+  const pilha=[[0,0]]; vis[0][0]=true;
+  while(pilha.length){
+    const [cx,cy]=pilha[pilha.length-1], viz=[];
+    for(const d of LDIRS){ const nx=cx+LDX[d], ny=cy+LDY[d];
+      if(nx>=0&&nx<n&&ny>=0&&ny<n&&!vis[ny][nx]) viz.push([d,nx,ny]); }
+    if(viz.length){ const [d,nx,ny]=rand(viz); g[cy][cx]|=d; g[ny][nx]|=LOPP[d]; vis[ny][nx]=true; pilha.push([nx,ny]); }
+    else pilha.pop();
+  }
+  return g;
+}
+// busca em largura de ini até alvo sem passar por células bloqueadas; devolve os passos (sem ini)
+function labBusca(g,n,ini,alvo,bloq){
+  const k=(x,y)=>x+","+y, prev=new Map([[k(ini[0],ini[1]),null]]), fila=[ini];
+  for(let i=0;i<fila.length;i++){
+    const [x,y]=fila[i]; if(x===alvo[0]&&y===alvo[1]) break;
+    for(const d of LDIRS) if(g[y][x]&d){
+      const nx=x+LDX[d], ny=y+LDY[d], kk=k(nx,ny);
+      if(!prev.has(kk) && !(bloq&&bloq.has(kk))){ prev.set(kk,[x,y]); fila.push([nx,ny]); }
+    }
+  }
+  if(!prev.has(k(alvo[0],alvo[1]))) return null;
+  const passos=[]; let c=alvo;
+  while(c && !(c[0]===ini[0]&&c[1]===ini[1])){ passos.push(c); c=prev.get(k(c[0],c[1])); }
+  return passos.reverse();
+}
+let labNivel=0, labN=4, labGrid=null, labSol=null, labCam=[[0,0]], labArr=false, labVenceu=false, labDicaAte=0;
+let labCell=0, labSize=0, labDpr=1, labStatic=null, labLoopOn=false;
+const labCv=document.getElementById("labCv"), labCtx=labCv.getContext("2d");
+function fitLab(){
+  if(!labGrid) return;
+  const area=labCv.closest(".play-area");
+  labSize=Math.floor(Math.max(150, Math.min(area.clientWidth-40, area.clientHeight-36, 620)));
+  labDpr=Math.min(window.devicePixelRatio||1,2.5);
+  labCv.style.width=labCv.style.height=labSize+"px";
+  labCv.width=labCv.height=Math.round(labSize*labDpr);
+  labCell=labSize/labN;
+  labEstatico();
+}
+function labEstatico(){
+  labStatic=document.createElement("canvas"); labStatic.width=labCv.width; labStatic.height=labCv.height;
+  const g=labStatic.getContext("2d"); g.scale(labDpr,labDpr);
+  g.fillStyle="#fff"; g.fillRect(0,0,labSize,labSize);
+  g.strokeStyle="#1e2a24"; g.lineWidth=Math.max(2,Math.min(7,labCell*0.14)); g.lineCap="round";
+  g.beginPath();
+  for(let y=0;y<labN;y++)for(let x=0;x<labN;x++){
+    const c=labGrid[y][x], x0=x*labCell, x1=x0+labCell, y0=y*labCell, y1=y0+labCell;
+    if(!(c&LN)){ g.moveTo(x0,y0); g.lineTo(x1,y0); }
+    if(!(c&LS)){ g.moveTo(x0,y1); g.lineTo(x1,y1); }
+    if(!(c&LW)){ g.moveTo(x0,y0); g.lineTo(x0,y1); }
+    if(!(c&LE)){ g.moveTo(x1,y0); g.lineTo(x1,y1); }
+  }
+  g.stroke();
+}
+function labTracar(cam,cor,larg){
+  labCtx.beginPath();
+  cam.forEach((c,i)=>{ const px=(c[0]+.5)*labCell, py=(c[1]+.5)*labCell; if(i) labCtx.lineTo(px,py); else labCtx.moveTo(px,py); });
+  labCtx.strokeStyle=cor; labCtx.lineWidth=larg; labCtx.lineCap="round"; labCtx.lineJoin="round"; labCtx.stroke();
+}
+function labDesenhar(){
+  if(!labStatic) return;
+  labCtx.setTransform(1,0,0,1,0,0); labCtx.clearRect(0,0,labCv.width,labCv.height); labCtx.drawImage(labStatic,0,0);
+  labCtx.setTransform(labDpr,0,0,labDpr,0,0);
+  const agora=performance.now();
+  if(agora<labDicaAte) labTracar(labSol,"rgba(243,167,18,.45)",labCell*.3);
+  if(labCam.length>1) labTracar(labCam,"#36a85a",labCell*.32);
+  if(labCam.length===1 && !labVenceu){   // pulso no início enquanto não começou
+    const t=(Math.sin(agora/350)+1)/2;
+    labCtx.beginPath(); labCtx.arc(.5*labCell,.5*labCell,labCell*(.3+.1*t),0,Math.PI*2);
+    labCtx.strokeStyle="rgba(54,168,90,"+(.55-.4*t)+")"; labCtx.lineWidth=3; labCtx.stroke();
+  }
+  labCtx.font=Math.max(12,labCell*.74)+"px "+EMOJI_FONT; labCtx.textAlign="center"; labCtx.textBaseline="middle";
+  labCtx.fillText("🧀",(labN-.5)*labCell,(labN-.5)*labCell);
+  const t=labCam[labCam.length-1];   // o ratinho anda junto com o caminho
+  labCtx.fillText("🐭",(t[0]+.5)*labCell,(t[1]+.5)*labCell);
+}
+function labLoop(){
+  if(!telaAtiva("labirinto")){ labLoopOn=false; return; }
+  try{ labDesenhar(); }catch(e){}
+  requestAnimationFrame(labLoop);
+}
+function carregarLabirinto(nivel){
+  limparTimers();
+  const tam=porIdade(LAB_CFG);
+  labNivel=nivel; labN=tam[nivel];
+  labGrid=labGerar(labN);
+  labSol=[[0,0],...labBusca(labGrid,labN,[0,0],[labN-1,labN-1],null)];
+  labCam=[[0,0]]; labVenceu=false; labArr=false; labDicaAte=0;
+  document.getElementById("labSub").textContent=subTxt("labirinto "+(nivel+1)+" de "+tam.length);
+  mostrarTela("labirinto");
+  fitLab();
+  if(!labLoopOn){ labLoopOn=true; requestAnimationFrame(labLoop); }
+}
+function labCelula(ev){
+  const r=labCv.getBoundingClientRect();
+  return [Math.max(0,Math.min(labN-1,Math.floor((ev.clientX-r.left)/labCell))),
+          Math.max(0,Math.min(labN-1,Math.floor((ev.clientY-r.top)/labCell)))];
+}
+function labIdx(x,y){ return labCam.findIndex(c=>c[0]===x&&c[1]===y); }
+function labMover(cel){
+  if(labVenceu) return;
+  const tail=labCam[labCam.length-1];
+  if(cel[0]===tail[0]&&cel[1]===tail[1]) return;
+  const i=labIdx(cel[0],cel[1]);
+  if(i>=0){ labCam.length=i+1; return; }   // voltou pelo próprio caminho
+  // segue pelos corredores até o dedo (no máx. 4 casas, sem cruzar o caminho já feito)
+  const passos=labBusca(labGrid,labN,tail,cel,new Set(labCam.map(c=>c[0]+","+c[1])));
+  if(passos && passos.length<=4){ labCam.push(...passos); somTick(); labChecar(); }
+}
+function labChecar(){
+  const t=labCam[labCam.length-1];
+  if(t[0]!==labN-1 || t[1]!==labN-1 || labVenceu) return;
+  labVenceu=true; labArr=false;
+  const ultimo=labNivel>=porIdade(LAB_CFG).length-1;
+  later(()=>celebrar("O ratinho achou o queijo! 🧀", ultimo?"Jogar de novo":"Próximo labirinto →",
+    ()=>carregarLabirinto(ultimo?0:labNivel+1)),400);
+}
+labCv.addEventListener("pointerdown",e=>{
+  e.preventDefault();
+  if(labVenceu) return;
+  ac();
+  const cel=labCelula(e), i=labIdx(cel[0],cel[1]);
+  if(i>=0) labCam.length=i+1; else labMover(cel);   // tocar à frente também anda (bom para os pequenos)
+  labArr=true;
+  try{ labCv.setPointerCapture(e.pointerId); }catch(_){}
+},{passive:false});
+labCv.addEventListener("pointermove",e=>{ if(!labArr) return; e.preventDefault(); labMover(labCelula(e)); },{passive:false});
+["pointerup","pointercancel"].forEach(t=>labCv.addEventListener(t,()=>{ labArr=false; }));
+
+/* ===================== 10) QUEBRA-CABEÇA ===================== */
+// r × c peças; modelo = mostra a figura pronta em miniatura
+const PUZ_CFG={
+  2:{r:1,c:2,modelo:true},
+  3:{r:1,c:3,modelo:true},
+  4:{r:2,c:2,modelo:true},
+  5:{r:2,c:3,modelo:false},
+  6:{r:3,c:3,modelo:false},
+};
+const PUZ_FIG=[{e:"🦁",bg:"#ffe0a3"},{e:"🐸",bg:"#c8f0c0"},{e:"🐼",bg:"#dfe7ef"},{e:"🦄",bg:"#f6d5f0"},
+  {e:"🐙",bg:"#ffd3c9"},{e:"🐢",bg:"#d3f2e4"},{e:"🦊",bg:"#ffe2c4"},{e:"🐳",bg:"#cfe8ff"},
+  {e:"🦋",bg:"#e3dcff"},{e:"🌻",bg:"#fff2b3"},{e:"🚂",bg:"#ffd6d6"},{e:"🏰",bg:"#e0f0ff"}];
+const PUZ_TOTAL=4; let puzRodada=0, puzCfg=null, puzPerm=[], puzSel=-1, puzImg="", puzFeito=false, puzS=300;
+const puzBoard=document.getElementById("puzBoard");
+function puzImagem(f){
+  const S=600, c=document.createElement("canvas"); c.width=c.height=S;
+  const g=c.getContext("2d");
+  g.fillStyle=f.bg; g.fillRect(0,0,S,S);
+  // bolinhas nos cantos, diferentes entre si: ajudam a saber onde vai cada peça
+  g.fillStyle="rgba(255,255,255,.6)";
+  [[90,90,52],[520,100,34],[96,512,38],[505,505,62]].forEach(([x,y,r])=>{ g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill(); });
+  g.font=(S*.66)+"px "+EMOJI_FONT; g.textAlign="center"; g.textBaseline="middle";
+  g.fillText(f.e,S/2,S*.54);
+  return c.toDataURL("image/png");
+}
+function fitPuz(){
+  if(!puzCfg) return;
+  const area=puzBoard.closest(".play-area");
+  puzS=Math.floor(Math.max(150, Math.min(area.clientWidth-30, area.clientHeight-(puzCfg.modelo?110:16), 440)));
+  desenharPuz();
+}
+function desenharPuz(){
+  const {r,c}=puzCfg, w=puzS/c, h=puzS/r;
+  puzBoard.style.gridTemplateColumns="repeat("+c+","+w+"px)";
+  puzBoard.innerHTML="";
+  puzPerm.forEach((peca,p)=>{
+    const b=document.createElement("button"); b.className="peca"+(p===puzSel?" sel":"");
+    b.style.width=w+"px"; b.style.height=h+"px";
+    b.style.backgroundImage="url("+puzImg+")";
+    b.style.backgroundSize=puzS+"px "+puzS+"px";
+    b.style.backgroundPosition=(-(peca%c)*w)+"px "+(-((peca/c)|0)*h)+"px";
+    b.addEventListener("click",()=>tocarPeca(p));
+    puzBoard.appendChild(b);
+  });
+  puzBoard.classList.toggle("feito",puzFeito);
+}
+function carregarQuebra(){
+  limparTimers();
+  puzCfg=porIdade(PUZ_CFG);
+  const n=puzCfg.r*puzCfg.c;
+  puzImg=puzImagem(rand(PUZ_FIG));
+  do{ puzPerm=shuffle([...Array(n).keys()]); }while(puzPerm.every((v,i)=>v===i));
+  puzSel=-1; puzFeito=false;
+  const m=document.getElementById("puzModelo"); m.src=puzImg; m.style.display=puzCfg.modelo?"block":"none";
+  document.getElementById("puzSub").textContent=subTxt(n+" peças · "+(puzRodada+1)+" de "+PUZ_TOTAL);
+  mostrarTela("quebra");
+  fitPuz();
+}
+function tocarPeca(p){
+  if(puzFeito) return;
+  ac();
+  if(puzSel<0){ puzSel=p; somTick(); }
+  else if(puzSel===p){ puzSel=-1; }
+  else {
+    [puzPerm[puzSel],puzPerm[p]]=[puzPerm[p],puzPerm[puzSel]]; puzSel=-1; somTick();
+    if(puzPerm.every((v,i)=>v===i)){
+      puzFeito=true; somOk();
+      later(()=>{ puzRodada++;
+        if(puzRodada>=PUZ_TOTAL){ puzRodada=0; celebrar("Quebra-cabeça montado! 🧩","Jogar de novo",()=>carregarQuebra()); }
+        else carregarQuebra(); },1100);
+    }
+  }
+  desenharPuz();
+}
+
+/* ===================== 11) ONDE TEM MAIS? ===================== */
+// minDif = diferença mínima entre os grupos; menos = às vezes pergunta "menos";
+// truque = o grupo menor usa figuras grandes, para a criança contar e não só olhar o tamanho
+const MAIS_CFG={
+  2:{lo:1,hi:5,minDif:3},
+  3:{lo:1,hi:6,minDif:2},
+  4:{lo:2,hi:8,minDif:1},
+  5:{lo:2,hi:10,minDif:1,menos:true},
+  6:{lo:3,hi:12,minDif:1,menos:true,truque:true},
+};
+const MAIS_TOTAL=6; let maisRodada=0, maisAtual=null;
+function gerarMais(){
+  const cfg=porIdade(MAIS_CFG), sorteia=()=>cfg.lo+((Math.random()*(cfg.hi-cfg.lo+1))|0);
+  let a,b; do{ a=sorteia(); b=sorteia(); }while(Math.abs(a-b)<cfg.minDif);
+  const pedeMenos=!!cfg.menos && Math.random()<.5;
+  let emo=[rand(CONT_OBJ)], cls=["",""];
+  emo[1]=emo[0];
+  if(cfg.truque){
+    const grande=rand(["🐘","🦒","🐳","🚌"]), pequeno=rand(["🐭","🐜","🐞","🐥"]);
+    const menor=a<b?0:1;
+    emo[menor]=grande; cls[menor]="gr"; emo[1-menor]=pequeno; cls[1-menor]="pq";
+  }
+  const certo = pedeMenos ? (a<b?0:1) : (a>b?0:1);
+  return {qtd:[a,b], emo, cls, pedeMenos, certo};
+}
+function carregarMais(){
+  limparTimers();
+  maisAtual=gerarMais();
+  document.getElementById("maisSub").textContent=subTxt((maisRodada+1)+" de "+MAIS_TOTAL);
+  const perg=maisAtual.pedeMenos?"Onde tem MENOS?":"Onde tem MAIS?";
+  document.getElementById("maisPerg").textContent=perg;
+  renderOpcoes(document.getElementById("maisOpts"), [0,1], (v,i)=>i===maisAtual.certo, ()=>{
+    maisRodada++;
+    if(maisRodada>=MAIS_TOTAL){ maisRodada=0; celebrar("Você sabe comparar! ⚖️","Jogar de novo",()=>carregarMais()); }
+    else carregarMais();
+  }, "cartao", (b,v,i)=>{
+    for(let k=0;k<maisAtual.qtd[i];k++){ const s=document.createElement("span"); s.className=maisAtual.cls[i]; s.textContent=maisAtual.emo[i]; b.appendChild(s); }
+  });
+  mostrarTela("mais");
+  falar(perg);
+}
+
+/* ===================== 12) CORES ===================== */
+const CORES={vermelho:"#e53935",azul:"#1e88e5",amarelo:"#fdd835",verde:"#43a047",laranja:"#fb8c00",roxo:"#8e24aa",
+  rosa:"#f48fb1",marrom:"#8d6e63",preto:"#263238",branco:"#ffffff",cinza:"#9e9e9e"};
+const MISTURAS=[["amarelo","azul","verde"],["vermelho","amarelo","laranja"],["vermelho","azul","roxo"],
+  ["vermelho","branco","rosa"],["preto","branco","cinza"]];
+const OBJ_COR=[["🍌","amarelo"],["🍓","vermelho"],["🥦","verde"],["🍆","roxo"],["🥕","laranja"],["🐷","rosa"],
+  ["🐻","marrom"],["💧","azul"],["🐸","verde"],["🌽","amarelo"],["🍒","vermelho"],["🍇","roxo"]];
+// nome = "toque no vermelho"; objeto = "de que cor é a banana?"; mistura = "amarelo com azul vira…"
+const COR_CFG={
+  2:{modo:"nome",lista:["vermelho","azul","amarelo","verde"],nOpt:2},
+  3:{modo:"nome",lista:["vermelho","azul","amarelo","verde","laranja","roxo"],nOpt:3},
+  4:{modo:"nome",lista:Object.keys(CORES),nOpt:4},
+  5:{modo:"objeto",nOpt:4},
+  6:{modo:"mistura",nOpt:4},
+};
+const COR_TOTAL=6; let corRodada=0, corAtual=null;
+function gerarCor(){
+  const cfg=porIdade(COR_CFG); let certa, pergunta, fig=null, pool;
+  if(cfg.modo==="nome"){ certa=rand(cfg.lista); pergunta="Toque no "+certa; pool=cfg.lista; }
+  else if(cfg.modo==="objeto"){ const [e,c]=rand(OBJ_COR); certa=c; fig={e}; pergunta="De que cor é?";
+    pool=["vermelho","azul","amarelo","verde","laranja","roxo","rosa","marrom"]; }
+  else { const m=rand(MISTURAS); certa=m[2]; fig={a:m[0],b:m[1]};
+    pergunta=m[0].charAt(0).toUpperCase()+m[0].slice(1)+" com "+m[1]+" vira qual cor?";
+    pool=["verde","laranja","roxo","rosa","cinza","marrom","azul","amarelo","vermelho"]; }
+  const distr=shuffle(pool.filter(k=>k!==certa)).slice(0,cfg.nOpt-1);
+  return {certa,pergunta,fig,opcoes:shuffle([certa,...distr])};
+}
+function carregarCores(){
+  limparTimers();
+  corAtual=gerarCor();
+  document.getElementById("corSub").textContent=subTxt((corRodada+1)+" de "+COR_TOTAL);
+  const fig=document.getElementById("corFig"); fig.innerHTML="";
+  const bola=c=>{ const d=document.createElement("div"); d.className="bola"; d.style.background=CORES[c]; return d; };
+  const op=t=>{ const d=document.createElement("div"); d.className="op"; d.textContent=t; return d; };
+  if(corAtual.fig && corAtual.fig.e) fig.textContent=corAtual.fig.e;
+  else if(corAtual.fig){ fig.append(bola(corAtual.fig.a),op("+"),bola(corAtual.fig.b),op("="),op("?")); }
+  fig.style.display=corAtual.fig?"flex":"none";
+  document.getElementById("corPerg").textContent=corAtual.pergunta;
+  renderOpcoes(document.getElementById("corOpts"), corAtual.opcoes, v=>v===corAtual.certa, ()=>{
+    corRodada++;
+    if(corRodada>=COR_TOTAL){ corRodada=0; celebrar("Você conhece as cores! 🎨","Jogar de novo",()=>carregarCores()); }
+    else carregarCores();
+  }, "cor", (b,v)=>{ b.style.background=CORES[v]; b.setAttribute("aria-label",v); });
+  // depois de acertar, fala o nome da cor
+  document.querySelectorAll("#corOpts .opt").forEach((b,i)=>b.addEventListener("click",()=>{
+    if(corAtual.opcoes[i]===corAtual.certa) falar(corAtual.certa); }));
+  mostrarTela("cores");
+  falar(corAtual.pergunta);
+}
+
+/* ===================== 13) DO MENOR AO MAIOR ===================== */
+// n figuras; passo = diferença de tamanho (px) entre elas; inverte = às vezes pede do maior ao menor
+const SER_CFG={
+  2:{n:2,passo:34},
+  3:{n:3,passo:22},
+  4:{n:4,passo:16},
+  5:{n:5,passo:12},
+  6:{n:5,passo:10,inverte:true},
+};
+const SER_OBJ=["🐻","🌳","🎈","🐟","⭐️","🍎","🚗","🐱","🏠","🐘"];
+const SER_TOTAL=6; let serRodada=0, serAtual=null;
+function gerarSerie(){
+  const cfg=porIdade(SER_CFG);
+  const desc=!!cfg.inverte && Math.random()<.5;
+  const itens=shuffle([...Array(cfg.n)].map((_,i)=>({t:30+i*cfg.passo, rank:desc?cfg.n-1-i:i})));
+  return {emoji:rand(SER_OBJ), desc, itens, prox:0, n:cfg.n};
+}
+function carregarSerie(){
+  limparTimers();
+  serAtual=gerarSerie();
+  document.getElementById("serSub").textContent=subTxt((serRodada+1)+" de "+SER_TOTAL);
+  const perg=serAtual.desc?"Toque do maior para o menor":"Toque do menor para o maior";
+  document.getElementById("serPerg").textContent=perg;
+  const fila=document.getElementById("serFila"); fila.innerHTML="";
+  for(let i=0;i<serAtual.n;i++){ const s=document.createElement("div"); s.className="slot"; fila.appendChild(s); }
+  const el=document.getElementById("serItens"); el.innerHTML="";
+  serAtual.itens.forEach(it=>{
+    const b=document.createElement("button"); b.className="opt serie";
+    const sp=document.createElement("span"); sp.style.fontSize=it.t+"px"; sp.textContent=serAtual.emoji; b.appendChild(sp);
+    b.addEventListener("click",()=>{
+      if(serAtual.prox>=serAtual.n) return;
+      ac();
+      if(it.rank!==serAtual.prox){ b.classList.add("wrong"); somNao(); setTimeout(()=>b.classList.remove("wrong"),400); return; }
+      b.classList.add("usado");
+      const slot=fila.children[serAtual.prox]; slot.classList.add("cheio");
+      const s2=document.createElement("span"); s2.style.fontSize=Math.round(it.t*.72)+"px"; s2.textContent=serAtual.emoji; slot.appendChild(s2);
+      serAtual.prox++;
+      if(serAtual.prox<serAtual.n){ somTick(); return; }
+      somOk();
+      later(()=>{ serRodada++;
+        if(serRodada>=SER_TOTAL){ serRodada=0; celebrar("Tudo em ordem! 📏","Jogar de novo",()=>carregarSerie()); }
+        else carregarSerie(); },800);
+    });
+    el.appendChild(b);
+  });
+  mostrarTela("serie");
+  falar(perg);
+}
+
+/* ===================== 14) FORMAS ===================== */
+function svgPoligono(n,r){ const p=[]; for(let i=0;i<n;i++){ const a=(-90+i*360/n)*Math.PI/180;
+  p.push((50+r*Math.cos(a)).toFixed(1)+","+(52+r*Math.sin(a)).toFixed(1)); } return '<polygon points="'+p.join(" ")+'"/>'; }
+function svgEstrela(){ const p=[]; for(let i=0;i<10;i++){ const r=i%2?19:46, a=(-90+i*36)*Math.PI/180;
+  p.push((50+r*Math.cos(a)).toFixed(1)+","+(53+r*Math.sin(a)).toFixed(1)); } return '<polygon points="'+p.join(" ")+'"/>'; }
+const FORMAS={
+  circulo:{nome:"círculo",art:"no",svg:'<circle cx="50" cy="50" r="42"/>'},
+  quadrado:{nome:"quadrado",art:"no",lados:4,svg:'<rect x="14" y="14" width="72" height="72" rx="3"/>'},
+  retangulo:{nome:"retângulo",art:"no",lados:4,svg:'<rect x="4" y="28" width="92" height="44" rx="3"/>'},
+  triangulo:{nome:"triângulo",art:"no",lados:3,svg:'<polygon points="50,8 93,88 7,88"/>'},
+  losango:{nome:"losango",art:"no",lados:4,svg:'<polygon points="50,4 84,50 50,96 16,50"/>'},
+  oval:{nome:"oval",art:"no",svg:'<ellipse cx="50" cy="50" rx="46" ry="29"/>'},
+  pentagono:{nome:"pentágono",art:"no",lados:5,svg:svgPoligono(5,46)},
+  hexagono:{nome:"hexágono",art:"no",lados:6,svg:svgPoligono(6,46)},
+  estrela:{nome:"estrela",art:"na",svg:svgEstrela()},
+  coracao:{nome:"coração",art:"no",svg:'<path d="M50 88 C14 62 4 40 18 24 C30 11 46 16 50 30 C54 16 70 11 82 24 C96 40 86 62 50 88 Z"/>'},
+};
+const PARECIDAS={circulo:["oval"],oval:["circulo"],quadrado:["retangulo","losango"],retangulo:["quadrado"],
+  losango:["quadrado"],pentagono:["hexagono"],hexagono:["pentagono"],triangulo:["losango"],estrela:["coracao"],coracao:["estrela"]};
+// parecidas = sempre inclui uma forma parecida com a certa; lados = "qual forma tem N lados?"
+const FOR_CFG={
+  2:{lista:["circulo","quadrado","triangulo"],nOpt:2},
+  3:{lista:["circulo","quadrado","triangulo","estrela","coracao"],nOpt:3},
+  4:{lista:["circulo","quadrado","triangulo","estrela","coracao","retangulo","losango","oval"],nOpt:4},
+  5:{lista:Object.keys(FORMAS),nOpt:4,parecidas:true},
+  6:{modo:"lados",nOpt:4},
+};
+const FOR_CORES=["#ef5350","#42a5f5","#ffca28","#66bb6a","#ab47bc","#ffa726","#ec407a","#26c6da"];
+const FOR_TOTAL=6; let forRodada=0, forAtual=null;
+function gerarForma(){
+  const cfg=porIdade(FOR_CFG); let alvo, pergunta, pool;
+  if(cfg.modo==="lados"){
+    alvo=rand(Object.keys(FORMAS).filter(k=>FORMAS[k].lados));
+    const L=FORMAS[alvo].lados;
+    pergunta="Qual forma tem "+L+" lados?";
+    // só entram formas com outro número de lados (e o círculo), para haver uma única resposta
+    pool=shuffle(Object.keys(FORMAS).filter(k=>FORMAS[k].lados ? FORMAS[k].lados!==L : k==="circulo"));
+  } else {
+    alvo=rand(cfg.lista); const f=FORMAS[alvo];
+    pergunta="Toque "+f.art+" "+f.nome;
+    pool=shuffle(cfg.lista.filter(k=>k!==alvo));
+    if(cfg.parecidas){ const par=(PARECIDAS[alvo]||[]).filter(k=>cfg.lista.includes(k));
+      if(par.length){ const p=rand(par); pool=[p,...pool.filter(k=>k!==p)]; } }
+  }
+  return {alvo, pergunta, opcoes:shuffle([alvo,...pool.slice(0,cfg.nOpt-1)]), cores:shuffle([...FOR_CORES])};
+}
+function carregarFormas(){
+  limparTimers();
+  forAtual=gerarForma();
+  document.getElementById("forSub").textContent=subTxt((forRodada+1)+" de "+FOR_TOTAL);
+  document.getElementById("forPerg").textContent=forAtual.pergunta;
+  renderOpcoes(document.getElementById("forOpts"), forAtual.opcoes, v=>v===forAtual.alvo, ()=>{
+    forRodada++;
+    if(forRodada>=FOR_TOTAL){ forRodada=0; celebrar("Você conhece as formas! 🔷","Jogar de novo",()=>carregarFormas()); }
+    else carregarFormas();
+  }, "forma", (b,v,i)=>{
+    b.innerHTML='<svg viewBox="0 0 100 100" aria-hidden="true"><g fill="'+forAtual.cores[i]+'">'+FORMAS[v].svg+'</g></svg>';
+    b.setAttribute("aria-label",FORMAS[v].nome);
+  });
+  document.querySelectorAll("#forOpts .opt").forEach((b,i)=>b.addEventListener("click",()=>{
+    if(forAtual.opcoes[i]===forAtual.alvo) falar(FORMAS[forAtual.alvo].nome); }));
+  mostrarTela("formas");
+  falar(forAtual.pergunta);
+}
+
 /* ===================== navegação / botões ===================== */
 function abrir(a){
   limparTimers(); fecharVitoria(); ac();
@@ -953,6 +1456,12 @@ function abrir(a){
   else if(a==="memoria") carregarMemoria();
   else if(a==="sombras"){ sombRodada=0; carregarSombras(); }
   else if(a==="diferente"){ difRodada=0; carregarDiferente(); }
+  else if(a==="labirinto") carregarLabirinto(0);
+  else if(a==="quebra"){ puzRodada=0; carregarQuebra(); }
+  else if(a==="mais"){ maisRodada=0; carregarMais(); }
+  else if(a==="cores"){ corRodada=0; carregarCores(); }
+  else if(a==="serie"){ serRodada=0; carregarSerie(); }
+  else if(a==="formas"){ forRodada=0; carregarFormas(); }
 }
 function irHome(){ limparTimers(); fecharVitoria(); document.getElementById("confetti").innerHTML=""; try{ window.speechSynthesis && speechSynthesis.cancel(); }catch(e){} mostrarTela("home"); }
 document.querySelectorAll(".tile").forEach(t=>t.addEventListener("click",()=>abrir(t.dataset.act)));
@@ -965,6 +1474,15 @@ document.getElementById("letSkip").addEventListener("click",()=>carregarLetras()
 document.getElementById("memReset").addEventListener("click",()=>carregarMemoria());
 document.getElementById("sombSkip").addEventListener("click",()=>carregarSombras());
 document.getElementById("difSkip").addEventListener("click",()=>carregarDiferente());
+document.getElementById("labReset").addEventListener("click",()=>{ limparTimers(); labCam=[[0,0]]; labVenceu=false; });
+document.getElementById("labHint").addEventListener("click",()=>{ labDicaAte=performance.now()+1600; });
+document.getElementById("labNovo").addEventListener("click",()=>carregarLabirinto(labNivel));
+document.getElementById("puzSkip").addEventListener("click",()=>carregarQuebra());
+document.getElementById("maisSkip").addEventListener("click",()=>carregarMais());
+document.getElementById("corSkip").addEventListener("click",()=>carregarCores());
+document.getElementById("serSkip").addEventListener("click",()=>carregarSerie());
+document.getElementById("forSkip").addEventListener("click",()=>carregarFormas());
+["maisPerg","corPerg","serPerg","forPerg"].forEach(id=>document.getElementById(id).addEventListener("click",e=>falar(e.currentTarget.textContent)));
 
 function toggleSom(){ somLigado=!somLigado;
   document.querySelectorAll(".botSom").forEach(b=>b.textContent=somLigado?"🔊":"🔇");
@@ -982,6 +1500,8 @@ function reajustar(){
   if(telaAtiva("sudoku")) fitSudoku();
   if(telaAtiva("padroes")) tamanhoPadrao();
   if(telaAtiva("memoria")) fitMem();
+  if(telaAtiva("labirinto")) fitLab();
+  if(telaAtiva("quebra")) fitPuz();
 }
 window.addEventListener("resize",reajustar);
 window.addEventListener("orientationchange",()=>setTimeout(reajustar,250));
@@ -1006,6 +1526,13 @@ if(location.hash==="#qa"){
     sudokuResolver:()=>{ const N=sudCfg.N; let lr=-1,lc=-1;
       for(let r=0;r<N;r++)for(let c=0;c<N;c++) if(!sudGivens[r][c]){ sudEstado[r][c]=sudSol[r][c]; lr=r; lc=c; }
       if(lr>=0){ sudEstado[lr][lc]=-1; sudSel=sudSol[lr][lc]; pintar(lr,lc); } },
+    maisAtual:()=>maisAtual, corAtual:()=>corAtual, forAtual:()=>forAtual,
+    labResolver:()=>{ labCam=labSol.map(c=>c.slice()); labChecar(); },
+    labTocar:(x,y)=>{ const r=labCv.getBoundingClientRect(); return {x:r.left+(x+.5)*labCell, y:r.top+(y+.5)*labCell}; },
+    labSol:()=>labSol, labCam:()=>labCam,
+    puzResolver:()=>{ for(let p=0;p<puzPerm.length;p++) if(puzPerm[p]!==p){ const q=puzPerm.indexOf(p); tocarPeca(p); tocarPeca(q); } },
+    serResolver:()=>{ const bs=[...document.querySelectorAll("#serItens .opt")];
+      for(let r=0;r<serAtual.n;r++) bs[serAtual.itens.findIndex(it=>it.rank===r)].click(); },
     memResolver:()=>{ const vistos={}; memCartas.forEach((c,i)=>(vistos[c.e]=vistos[c.e]||[]).push(i));
       Object.values(vistos).forEach(([a,b])=>{ virar(a); virar(b); }); },
   };
